@@ -1,0 +1,863 @@
+﻿<Window x:Class="Tema_1.Programmer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema_1"
+        mc:Ignorable="d"
+        Title="Calculator"
+        Height="750" 
+        Width="500"
+        Icon="cartoon-calculator-icon-png.png"
+        Background="{DynamicResource BackgroundColor}">
+
+    <Window.DataContext>
+        <local:ProgrammerFunctions/>
+    </Window.DataContext>
+
+    <Grid Margin="0,0,0,-16">
+
+        <TextBox
+        x:Name="Mode"
+        Text="Programmer"
+        FontSize="30" Margin="55,13,191,672"
+        FontWeight="Bold"
+        BorderBrush="Transparent"
+        IsReadOnly="True"
+        Background="{DynamicResource BackgroundColor}"
+        Foreground="{DynamicResource TextForeground}"/>
+
+        <Button 
+        Name="Meniuu"
+        Height="30"
+        Width="30"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Margin="20, 20"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        BorderBrush="Transparent"
+            Click="MeniuClick">
+            <Image x:Name="Meniu" Source="descărcare.jpg"/>
+
+            <Button.ContextMenu>
+                <ContextMenu Name="MeniuContext">
+                    <MenuItem Header="Help" Background="{DynamicResource ButtonBackgroundColor}">
+                        <MenuItem Header="About" Name="About" Click="About_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                    </MenuItem>
+                    <MenuItem Header="File" Background="{DynamicResource ButtonBackgroundColor}">
+                        <MenuItem Header="Cut" Name="Cut" Click="Cut_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                        <MenuItem Header="Copy" Name="Copy" Click="Copy_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                        <MenuItem Header="Paste" Name="Paste" Click="Paste_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                        <MenuItem Header="Digit Grouping" Name="DigitGroupingButton" Click="DigitGrouping_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                    </MenuItem>
+                    <MenuItem Header="Mode" Background="{DynamicResource ButtonBackgroundColor}">
+                        <MenuItem Header="Standard" Name="Standard" Click="Mode_Click" Background="{DynamicResource ButtonBackgroundColor}"/>
+                    </MenuItem>
+                    <MenuItem Header="Theme" Background="{DynamicResource ButtonBackgroundColor}">
+                        <MenuItem Header="Lime Green" Background="{DynamicResource ButtonBackgroundColor}"/>
+                        <MenuItem Header="Pale Pink" Background="{DynamicResource ButtonBackgroundColor}"/>
+                        <MenuItem Header="Lavender Violet" Background="{DynamicResource ButtonBackgroundColor}"/>
+                    </MenuItem>
+
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+
+        <Border
+        BorderThickness="1"
+        BorderBrush="Transparent"
+        Margin="25,78,15,553"
+        CornerRadius="10"
+        Padding="0"
+        Background="{DynamicResource BackgroundColor}">
+            <TextBox
+            Name="Result"
+            Text="{Binding Result.Subtotal}"
+            FontSize="50"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="Bold" 
+            RenderTransformOrigin="0.576,-0.054" 
+            Width="440" 
+            BorderBrush="Transparent"
+            TextAlignment="Right"
+            IsReadOnly="True"
+            Background="{DynamicResource BackgroundColor}"/>
+        </Border>
+
+        <Button 
+            Name="HEX" 
+            Content="HEX" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Height="28" 
+            Width="39" 
+            Margin="28,204,0,0" 
+            FontSize="20" 
+            BorderBrush="Transparent" 
+            Click="HEX_Click" 
+            Background="{DynamicResource BackgroundColor}" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsHexOn}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundColor}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button 
+            Name="DEC" 
+            Content="DEC" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Height="28" 
+            Width="39" 
+            Margin="28,246,0,0" 
+            FontSize="20" 
+            BorderBrush="Transparent" 
+            Click="DEC_Click" 
+            Background="{DynamicResource BackgroundColor}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDecOn}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundColor}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button 
+            Name="OCT" 
+            Content="OCT" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Height="28" 
+            Width="39" 
+            Margin="28,288,0,0" 
+            FontSize="20" 
+            BorderBrush="Transparent" 
+            Click="OCT_Click" 
+            Background="{DynamicResource BackgroundColor}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOctOn}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundColor}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button 
+            Name="BIN" 
+            Content="BIN" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Height="28" 
+            Width="39" 
+            Margin="28,332,0,0" 
+            FontSize="20" 
+            BorderBrush="Transparent" 
+            Click="BIN_Click" 
+            Background="{DynamicResource BackgroundColor}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundColor}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBox Name="HEXBox" 
+                 HorizontalAlignment="Left" 
+                 Margin="95,204,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding HexBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Top" 
+                 Width="205" 
+                 Height="28" 
+                 TextAlignment="Left" 
+                 IsReadOnly="True" 
+                 BorderBrush="Transparent" 
+                 FontSize="20" 
+                 Background="{DynamicResource BackgroundColor}"/>
+        <TextBox Name="DECBox" 
+                 HorizontalAlignment="Left" 
+                 Height="28" 
+                 Margin="95,246,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding DecBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Top" 
+                 Width="205" 
+                 TextAlignment="Left" 
+                 IsReadOnly="True" 
+                 BorderBrush="Transparent" 
+                 FontSize="20" 
+                 Background="{DynamicResource BackgroundColor}"/>
+        <TextBox Name="OCTBox" 
+                 HorizontalAlignment="Left" 
+                 Height="28" 
+                 Margin="95,288,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding OctBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Top" Width="205" 
+                 TextAlignment="Left" 
+                 IsReadOnly="True" 
+                 BorderBrush="Transparent" 
+                 FontSize="20" 
+                 Background="{DynamicResource BackgroundColor}"/>
+        <TextBox Name="BINBox" 
+                 HorizontalAlignment="Left" 
+                 Height="28" 
+                 Margin="95,330,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding BinBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Top" 
+                 Width="205" 
+                 TextAlignment="Left" 
+                 IsReadOnly="True" 
+                 BorderBrush="Transparent" 
+                 FontSize="20" 
+                 Background="{DynamicResource BackgroundColor}"/>
+
+        <Button
+        x:Name="A"
+        Content="A"
+        Height="44"
+        Width="85"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,268"
+        IsEnabled="{Binding IsHexOn}"
+        Click="A_Click"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="B"
+        Content="B"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,219"
+        IsEnabled="{Binding IsHexOn}"
+        Click="B_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="C"
+        Content="C"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,170"
+        IsEnabled="{Binding IsHexOn}"
+        Click="C_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="D"
+        Content="D"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,121"
+        IsEnabled="{Binding IsHexOn}"
+        Click="D_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="E"
+        Content="E"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,72"
+        IsEnabled="{Binding IsHexOn}"
+        Click="E_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="F"
+        Content="F"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,390,23"
+        IsEnabled="{Binding IsHexOn}"
+        Click="F_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Seven"
+        Content="7"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,300,170"
+        Click="Seven_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Four"
+        Content="4"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,300,121"
+        Click="Four_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="One"
+        Content="1"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,300,72"
+        Click="One_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Opposite"
+        Content="+/-"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,300,23" Click="Opposite_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Eight"
+        Content="8"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,210,170"
+        Click="Eight_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsOctOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Five"
+        Content="5"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,210,121"
+        Click="Five_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Two"
+        Content="2"
+        Height="44"
+        Width="86"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Margin="190,612,0,0"
+        Click="Two_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Zero"
+        Content="0"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,210,23"
+        Click="Zero_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="CE"
+        Content="CE"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,300,219"
+        Click="CE_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Modulo"
+        Content="%"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,219"
+        Click="Modulo_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Nine"
+        Content="9"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,170"
+        Click="Nine_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsOctOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Six"
+        Content="6"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,121"
+        Click="Six_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Three"
+        Content="3"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,72"
+        Click="Three_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBinOn}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button
+        x:Name="Dot"
+        Content="."
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,23"
+        IsEnabled="False"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Backspace"
+        Content="Backspace"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,210,219"
+        Click="Backspace_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Divide"
+        Content="/"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,219"
+        Click="Divide_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Multiply"
+        Content="X"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,170"
+        Click="Multiply_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Minus"
+        Content="-"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,121"
+        Click="Minus_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Plus"
+        Content="+"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,72"
+        Click="Plus_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="Equals"
+        Content="="
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,23"
+        Click="Equals_Click"
+        BorderBrush="Transparent">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+
+        <Button
+        x:Name="MS"
+        Content="MS"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,120,268"
+        BorderBrush="Transparent" Click="MS_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+        x:Name="MDown"
+        Content="M\/"
+        Height="44"
+        Width="85"
+        Background="{DynamicResource ButtonBackgroundColor}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,30,268"
+        BorderBrush="Transparent"
+        IsEnabled="{Binding IsMemoryStackNotEmpty}"
+        Click="MDown_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <TextBox Name="NumberAndOperations"  
+         HorizontalAlignment="Left" 
+         Height="30" 
+         Margin="309,46,0,0" 
+         TextWrapping="Wrap" 
+         Text="{Binding Operation}" 
+         VerticalAlignment="Top" 
+         Width="157"
+         TextAlignment="Right"
+         BorderBrush="Transparent"
+         Background="{DynamicResource BackgroundColor}"
+         Foreground="{DynamicResource TextForeground}"
+         />
+    </Grid>
+</Window>

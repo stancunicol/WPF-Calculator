@@ -1,0 +1,12 @@
+<Window x:Class="Tema_1.DigitGroupingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Digit Grouping" Height="150" Width="250">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Choose an option:" Margin="10" FontSize="14"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="OnButton" Content="On" Width="80" Margin="10" Click="OnButton_Click" Background="LightGray"/>
+            <Button Name="OffButton" Content="Off" Width="80" Margin="10" Click="OffButton_Click" Background="LightGray"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

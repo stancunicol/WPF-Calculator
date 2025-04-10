@@ -1,0 +1,14 @@
+<Window x:Class="Tema_1.DialogStack"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Memory Stack" Height="230" Width="300">
+    <StackPanel Margin="10">
+        <TextBlock Text="This is the memory stack." FontWeight="Bold"/>
+        <ListBox x:Name="memoryList" Height="80" SelectionChanged="MemoryList_SelectionChanged" />
+
+        <TextBlock Text="The operations that are available:" FontWeight="Bold"/>
+        <Button Content="MC" Click="RemoveNumber_Click"/>
+        <Button Content="M+" Click="MemoryAdd_Click"/>
+        <Button Content="M-" Click="MemorySubtract_Click"/>
+    </StackPanel>
+</Window>

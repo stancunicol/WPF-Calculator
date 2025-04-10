@@ -1,0 +1,19 @@
+﻿<Application x:Class="Tema_1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Tema_1">
+    <Application.Resources>
+        <ResourceDictionary>
+        <SolidColorBrush x:Key="MenuBackgroundColor" Color="#5E548E"/>
+        <SolidColorBrush x:Key="MenuItemBackgroundColor" Color="#BE95C4"/>
+        <SolidColorBrush x:Key="MenuItemForegroundColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#E0B1CB"/>
+        <SolidColorBrush x:Key="CanvasBackgroundColor" Color="#BE95C4"/>
+        <SolidColorBrush x:Key="CanvasBorderBrush" Color="#231942"/>
+        <SolidColorBrush x:Key="TextForeground" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="ButtonBackgroundColor" Color="#BE95C4"/>
+        <SolidColorBrush x:Key="ButtonForegroundColor" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="ButtonBorderBrush" Color="#9F86C0"/>
+            </ResourceDictionary>
+    </Application.Resources>
+</Application>
